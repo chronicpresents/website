@@ -1756,6 +1756,7 @@
     });
   }
 
+  var _offerMeasurer = null;
   function fitOfferHeading() {
     var el = document.getElementById('offerQ');
     if (!el) return;
@@ -1768,24 +1769,35 @@
       return;
     }
 
-    el.style.whiteSpace = 'nowrap';
-
     var parent = el.parentElement; // the FAQ bubble
     var ps = getComputedStyle(parent);
     var avail = parent.clientWidth
       - parseFloat(ps.paddingLeft) - parseFloat(ps.paddingRight);
     if (avail <= 0) return; // tab not visible yet; will run again when shown
 
-    // Measure the actual rendered width (handles mixed upright/italic words)
-    var prevDisplay = el.style.display;
-    el.style.display = 'inline-block';
-    el.style.fontSize = '100px';
-    var measured = el.offsetWidth;
-    el.style.display = prevDisplay || '';
+    // Measure in a hidden, off-flow element so the visible heading never
+    // changes size in the layout (prevents scroll jumps on mobile).
+    if (!_offerMeasurer) {
+      _offerMeasurer = document.createElement('span');
+      _offerMeasurer.className = 'dual-font';
+      _offerMeasurer.style.cssText =
+        'position:absolute;left:-99999px;top:0;visibility:hidden;' +
+        'white-space:nowrap;display:inline-block;pointer-events:none;';
+      document.body.appendChild(_offerMeasurer);
+    }
+    var cs = getComputedStyle(el);
+    _offerMeasurer.style.fontFamily = cs.fontFamily;
+    _offerMeasurer.style.fontStyle = cs.fontStyle;
+    _offerMeasurer.style.fontWeight = cs.fontWeight;
+    _offerMeasurer.style.letterSpacing = cs.letterSpacing;
+    _offerMeasurer.style.fontSize = '100px';
+    _offerMeasurer.innerHTML = el.innerHTML;
+    var measured = _offerMeasurer.offsetWidth;
     if (!measured) return;
 
     var size = (avail / measured) * 100 * 0.95; // safety margin
     size = Math.max(12, Math.min(size, 46));
+    el.style.whiteSpace = 'nowrap';
     el.style.fontSize = size + 'px';
   }
 
@@ -1808,7 +1820,16 @@
     }
   })();
 
-  window.addEventListener('resize', fitOfferHeading);
+  // Only re-fit on actual width changes (ignore mobile address-bar show/hide,
+  // which fires resize with a height-only change and caused scroll jumps).
+  var _lastFitWidth = window.innerWidth;
+  var _fitTimer;
+  window.addEventListener('resize', function () {
+    if (window.innerWidth === _lastFitWidth) return;
+    _lastFitWidth = window.innerWidth;
+    clearTimeout(_fitTimer);
+    _fitTimer = setTimeout(fitOfferHeading, 150);
+  });
   if (document.fonts && document.fonts.ready) {
     document.fonts.ready.then(function () { applyDualFont(); fitOfferHeading(); });
   }
