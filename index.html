@@ -129,6 +129,68 @@
     nav button:hover { color: #d9b083; background: #ffffff0a; }
     nav button.active { color: #c3955b; border-bottom-color: #c3955b; }
 
+    /* Hamburger (mobile only) */
+    .nav-hamburger {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      gap: 5px;
+      background: none;
+      border: none;
+      border-bottom: none;
+      padding: 8px 10px;
+      cursor: pointer;
+    }
+    .nav-hamburger span {
+      display: block;
+      width: 24px;
+      height: 2.5px;
+      border-radius: 2px;
+      background: #c3955b;
+    }
+    .nav-hamburger:hover { background: none; }
+
+    /* Full-screen mobile menu (hidden until opened) */
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      inset: 0;
+      height: 100vh;
+      height: 100dvh;
+      z-index: 3000;
+      background: linear-gradient(180deg, #1a0a02 0%, #2C1408 70%, #1a0a02 100%);
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 1.5rem;
+      overflow: hidden;
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a {
+      color: #c3955b;
+      font-family: 'Cormorant', serif;
+      font-style: italic;
+      font-weight: 600;
+      font-size: clamp(1.35rem, 5.5vw, 1.9rem);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      text-decoration: none;
+      white-space: nowrap;
+      cursor: pointer;
+    }
+    .mobile-menu a:hover, .mobile-menu a:active { color: #d9b083; }
+    .mobile-menu-close {
+      position: absolute;
+      top: 16px;
+      right: 22px;
+      background: none;
+      border: none;
+      color: #c3955b;
+      font-size: 2.6rem;
+      line-height: 1;
+      cursor: pointer;
+    }
+
     /* ── MAIN ── */
     main {
       flex: 1;
@@ -223,6 +285,74 @@
 
     @media (max-width: 600px) {
       .collage-stage { width: 116%; margin-left: -8%; }
+    }
+
+    .photo-credit {
+      text-align: center;
+      font-family: 'Cormorant', serif;
+      font-style: italic;
+      font-size: 1.05rem;
+      letter-spacing: 0.05em;
+      color: var(--cream-light);
+      margin-top: 1.6rem;
+    }
+
+    /* Event promo popup */
+    .promo-popup {
+      position: fixed;
+      inset: 0;
+      z-index: 4000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(24,14,8,0.55);
+      -webkit-backdrop-filter: blur(2px);
+      backdrop-filter: blur(2px);
+      padding: 4vw;
+    }
+    .promo-popup .promo-inner {
+      display: flex;
+      gap: 2.5vw;
+      align-items: center;
+      justify-content: center;
+      max-width: 94vw;
+      max-height: 90vh;
+    }
+    .promo-flyer {
+      max-height: 84vh;
+      max-width: 42vw;
+      width: auto;
+      height: auto;
+      border-radius: 10px;
+      box-shadow: 0 14px 44px rgba(0,0,0,0.55);
+    }
+    .promo-ticket {
+      margin: 0 !important;
+      width: min(340px, 42vw);
+      box-shadow: 0 14px 44px rgba(0,0,0,0.45);
+    }
+    .promo-close {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      width: 44px;
+      height: 44px;
+      background: rgba(0,0,0,0.4);
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      font-size: 1.7rem;
+      line-height: 1;
+      cursor: pointer;
+      z-index: 5;
+      transition: background 0.2s;
+    }
+    .promo-close:hover { background: rgba(0,0,0,0.62); }
+
+    @media (max-width: 600px) {
+      .promo-popup .promo-inner { flex-direction: column; gap: 16px; overflow-y: auto; }
+      .promo-flyer { max-width: 82vw; max-height: 56vh; }
+      .promo-ticket { width: min(360px, 84vw); }
     }
 
     .albums-note {
@@ -683,6 +813,61 @@
       margin-top: 0.25rem;
     }
 
+    .ticket-box {
+      margin-top: 1.4rem;
+      background: var(--cream-light);
+      border: 2px solid var(--forest);
+      border-radius: 12px;
+      padding: 1rem 1.4rem;
+      text-align: center;
+    }
+
+    .ticket-box .ticket-label {
+      font-size: 0.74rem;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--amber);
+      font-weight: 600;
+      margin-bottom: 0.4rem;
+    }
+
+    .ticket-box .ticket-text {
+      font-family: 'Cormorant', serif;
+      font-style: italic;
+      color: var(--forest);
+      font-size: 1.05rem;
+      line-height: 1.35;
+      margin-bottom: 0.75rem;
+    }
+
+    .ticket-box .ticket-link {
+      display: inline-block;
+      background: var(--forest);
+      color: var(--cream-light);
+      font-weight: 700;
+      font-style: normal;
+      letter-spacing: 0.05em;
+      text-decoration: none;
+      padding: 0.5rem 1.3rem;
+      border-radius: 50px;
+      transition: transform 0.15s, background 0.2s;
+    }
+    .ticket-box .ticket-link:hover { transform: scale(1.04); background: var(--forest-mid); }
+
+    .event-flyers {
+      margin-top: 1.6rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    .event-flyers img {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 10px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.22);
+    }
+
     /* ── EVENTS LAYOUT (two columns) ── */
     .events-layout {
       display: grid;
@@ -807,6 +992,15 @@
       border-radius: 50%;
       background: var(--amber-pale);
     }
+
+    /* Lighter green for the circus-week range (Sept 8–11) */
+    .cal-cell.cal-week {
+      background: #6f9a6f;
+      color: var(--cream-light);
+      font-weight: 600;
+      cursor: pointer;
+    }
+    .cal-cell.cal-week:hover { filter: brightness(1.08); }
 
     .cal-tooltip {
       position: fixed;
@@ -1047,8 +1241,28 @@
     @media (max-width: 680px) {
       .rental-grid { grid-template-columns: 1fr; gap: 3rem; }
       .rental-circle { width: 240px; height: 240px; }
-      nav button { padding: 0.6rem 0.9rem; font-size: 0.85rem; letter-spacing: 0.1em; }
       .hb-logo { width: 26%; }
+
+      /* Compact tab bar: hamburger on the left, 3 primary tabs centered */
+      nav {
+        flex-wrap: nowrap;
+        position: relative;
+        padding: 0 44px;
+      }
+      .nav-hamburger {
+        display: flex;
+        position: absolute;
+        left: 8px;
+        top: 50%;
+        transform: translateY(-50%);
+      }
+      nav button:not(.nav-primary):not(.nav-hamburger) { display: none; }
+      nav button.nav-primary {
+        padding: 0.6rem 0.5rem;
+        font-size: 0.8rem;
+        letter-spacing: 0.03em;
+      }
+
       body {
         background:
           conic-gradient(from 0deg at 0% 100%,
@@ -1075,20 +1289,72 @@
 </head>
 <body>
 
+  <!-- Home promo popup (auto-hides after Sept 12, 2026; close via X) -->
+  <div id="promoPopup" class="promo-popup" style="display:none;">
+    <button class="promo-close" onclick="closePromo('promoPopup')" aria-label="Close">&times;</button>
+    <div class="promo-inner">
+      <div class="ticket-box promo-ticket">
+        <div class="ticket-label">Tickets</div>
+        <p class="ticket-text">Click here to purchase your tickets for Cabaret After Dark</p>
+        <a class="ticket-link" href="https://fringearts.my.salesforce-sites.com/ticket/#/events/a0SUO00000KgwLc2AJ" target="_blank" rel="noopener">Buy Tickets &rarr;</a>
+      </div>
+      <img class="promo-flyer" src="vingette-flyer.jpg" alt="Vingette — Chronic Presents, After Dark, Saturday 12th at 9:30pm, IceBox Project Space" />
+    </div>
+  </div>
+
+  <!-- Events tab promo popup (ticket box only; close via X) -->
+  <div id="eventsPopup" class="promo-popup" style="display:none;">
+    <button class="promo-close" onclick="closePromo('eventsPopup')" aria-label="Close">&times;</button>
+    <div class="promo-inner">
+      <div class="ticket-box promo-ticket">
+        <div class="ticket-label">Tickets</div>
+        <p class="ticket-text">Click here to purchase your tickets for Cabaret After Dark</p>
+        <a class="ticket-link" href="https://fringearts.my.salesforce-sites.com/ticket/#/events/a0SUO00000KgwLc2AJ" target="_blank" rel="noopener">Buy Tickets &rarr;</a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    var PROMO_DEADLINE = new Date(2026, 8, 12, 23, 59, 59); // Sept 12, 2026 end of day
+    function closePromo(id) { var el = document.getElementById(id); if (el) el.style.display = 'none'; }
+    (function () {
+      var p = document.getElementById('promoPopup');
+      if (p && new Date() <= PROMO_DEADLINE) { p.style.display = 'flex'; }
+    })();
+    function maybeShowEventsPopup() {
+      var p = document.getElementById('eventsPopup');
+      if (!p || new Date() > PROMO_DEADLINE) return;
+      try { if (sessionStorage.getItem('cpEventsPopup')) return; sessionStorage.setItem('cpEventsPopup', '1'); } catch (e) {}
+      p.style.display = 'flex';
+    }
+  </script>
+
 <header>
   <div class="header-banner">
     <img class="hb-photo" src="header_bg.jpg" alt="" />
     <img class="hb-logo" src="logo_circle.png" alt="Chronic Presents" />
   </div>
   <nav id="tabs">
-    <button class="active" onclick="showPage('home', this)">Home</button>
-    <button onclick="showPage('faq', this)">Our Purpose</button>
-    <button onclick="showPage('events', this)">Events</button>
-    <button onclick="showPage('rentals', this)">Equipment Rentals</button>
-    <button onclick="showPage('albums', this)">Photo Albums</button>
-    <button onclick="showPage('videoalbums', this)">Video Albums</button>
-    <button onclick="showPage('contact', this)">Contact</button>
+    <button class="nav-hamburger" onclick="toggleMobileMenu()" aria-label="Open menu"><span></span><span></span><span></span></button>
+    <button class="active nav-primary" data-page="home" onclick="showPage('home', this)">Home</button>
+    <button data-page="faq" onclick="showPage('faq', this)">Our Purpose</button>
+    <button class="nav-primary" data-page="events" onclick="showPage('events', this)">Events</button>
+    <button class="nav-primary" data-page="rentals" onclick="showPage('rentals', this)">Equipment Rentals</button>
+    <button data-page="albums" onclick="showPage('albums', this)">Photo Albums</button>
+    <button data-page="videoalbums" onclick="showPage('videoalbums', this)">Video Albums</button>
+    <button data-page="contact" onclick="showPage('contact', this)">Contact</button>
   </nav>
+
+  <div id="mobileMenu" class="mobile-menu">
+    <button class="mobile-menu-close" onclick="closeMobileMenu()" aria-label="Close menu">&times;</button>
+    <a onclick="mobileNav('home')">Home</a>
+    <a onclick="mobileNav('faq')">Our Purpose</a>
+    <a onclick="mobileNav('events')">Events</a>
+    <a onclick="mobileNav('rentals')">Equipment Rentals</a>
+    <a onclick="mobileNav('albums')">Photo Albums</a>
+    <a onclick="mobileNav('videoalbums')">Video Albums</a>
+    <a onclick="mobileNav('contact')">Contact</a>
+  </div>
 </header>
 
 <main>
@@ -1119,6 +1385,7 @@
           } catch (e) {}
         })();
       </script>
+      <p class="photo-credit">Photography credit: @joleahalarke</p>
     </div>
   </section>
 
@@ -1199,9 +1466,20 @@
 
         <div class="upcoming-list">
           <div class="upcoming-slot">
-            <div class="slot-title">I.B.I.C.W. x Fringe Arts</div>
+            <div class="slot-title">International Black &amp; Indigenous Circus Week x Fringe Arts</div>
             <div class="slot-detail">September 12th @ 9:30pm &middot; Icebox Space</div>
           </div>
+        </div>
+
+        <div class="ticket-box">
+          <div class="ticket-label">Tickets</div>
+          <p class="ticket-text">Click here to purchase your tickets for Cabaret After Dark</p>
+          <a class="ticket-link" href="https://fringearts.my.salesforce-sites.com/ticket/#/events/a0SUO00000KgwLc2AJ" target="_blank" rel="noopener">Buy Tickets &rarr;</a>
+        </div>
+
+        <div class="event-flyers">
+          <img src="circus-week-flyer.png" alt="3rd Annual International Black &amp; Indigenous Circus Week — Cannonball Hub, September 8–13, 2026" />
+          <img src="vingette-flyer.jpg" alt="Vingette — Creator of Chronic Presents, After Dark, Saturday 12th at 9:30pm, IceBox Project Space" />
         </div>
       </div>
 
@@ -1511,6 +1789,11 @@
     </div>
 
     <p class="albums-note">More photos coming soon.</p>
+
+    <div class="video-category">
+      <h3 class="album-title">Creator Credits</h3>
+      <div class="credits-box">@jayouthier &nbsp;·&nbsp; @sepoulton &nbsp;·&nbsp; @hoh.photos856</div>
+    </div>
   </section>
 
   <!-- VIDEO ALBUMS -->
@@ -1615,18 +1898,31 @@
 <script>
   function showPage(id, btn, noScroll) {
     document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-    document.querySelectorAll('nav button').forEach(b => b.classList.remove('active'));
     document.getElementById('page-' + id).classList.add('active');
-    if (btn) btn.classList.add('active');
+    // active state follows the page id, so it works from any trigger
+    document.querySelectorAll('nav button[data-page]').forEach(function (b) {
+      b.classList.toggle('active', b.dataset.page === id);
+    });
     if (!noScroll) window.scrollTo({ top: 0, behavior: 'smooth' });
     if (id === 'faq') requestAnimationFrame(fitOfferHeading);
     if (id === 'videoalbums') ytActivate();
+    if (id === 'events') maybeShowEventsPopup();
+  }
+
+  function toggleMobileMenu() {
+    document.getElementById('mobileMenu').classList.toggle('open');
+  }
+  function closeMobileMenu() {
+    document.getElementById('mobileMenu').classList.remove('open');
+  }
+  function mobileNav(id) {
+    closeMobileMenu();
+    showPage(id);
   }
 
   // Jump from an event to its album on the Albums tab
   function goToAlbum(slug) {
-    var btn = document.querySelectorAll('nav button')[4]; // Albums tab
-    showPage('albums', btn, true);
+    showPage('albums', null, true);
     requestAnimationFrame(function () {
       var el = document.getElementById('album-' + slug);
       if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -1640,7 +1936,11 @@
 
   // Upcoming events: 'YYYY-MM-DD': { title, time, location }
   const calEvents = {
-    '2025-09-12': { title: 'I.B.I.C.W. x Fringe Arts', time: '9:30pm', location: 'Icebox Space' },
+    '2026-09-08': { title: 'International Black & Indigenous Circus Week', light: true },
+    '2026-09-09': { title: 'International Black & Indigenous Circus Week', light: true },
+    '2026-09-10': { title: 'International Black & Indigenous Circus Week', light: true },
+    '2026-09-11': { title: 'International Black & Indigenous Circus Week', light: true },
+    '2026-09-12': { title: 'International Black & Indigenous Circus Week', time: '9:30pm', location: 'I.B.I.C.W. x Fringe Arts \u00b7 Icebox Space' },
   };
 
   let calDate = new Date();
@@ -1709,7 +2009,7 @@
       const key = year + '-' + String(month + 1).padStart(2, '0') + '-' + String(d).padStart(2, '0');
       const ev = calEvents[key];
       if (ev) {
-        el.classList.add('has-event');
+        el.classList.add(ev.light ? 'cal-week' : 'has-event');
         const meta = [ev.time, ev.location].filter(Boolean).join(' \u00b7 ');
         el.setAttribute('aria-label', ev.title + (meta ? ' \u2014 ' + meta : ''));
         el.addEventListener('mouseenter', () => calShowTip(el, ev));
