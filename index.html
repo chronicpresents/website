@@ -64,6 +64,7 @@
       color: var(--text-dark);
       display: flex;
       flex-direction: column;
+      overflow-x: clip;
     }
 
     /* ── HEADER ── */
@@ -209,7 +210,7 @@
     }
 
     /* ── HOME / VIDEO ── */
-    .home-intro { text-align: center; padding: 0.5rem 0 2rem; }
+    .home-intro { text-align: center; padding: 0.5rem 0 2rem; display: flex; flex-direction: column; min-height: 62vh; }
 
     .home-intro .tagline {
       font-family: 'Cormorant', serif;
@@ -284,7 +285,7 @@
     }
 
     @media (max-width: 600px) {
-      .collage-stage { width: 116%; margin-left: -8%; }
+      .collage-stage { width: 100%; margin-left: 0; }
     }
 
     .photo-credit {
@@ -294,7 +295,8 @@
       font-size: 1.05rem;
       letter-spacing: 0.05em;
       color: var(--cream-light);
-      margin-top: 1.6rem;
+      margin-top: auto;
+      padding-top: 2.5rem;
     }
 
     /* Event promo popup */
@@ -315,21 +317,51 @@
       gap: 2.5vw;
       align-items: center;
       justify-content: center;
-      max-width: 94vw;
-      max-height: 90vh;
+      max-width: 96vw;
+      max-height: 92vh;
     }
     .promo-flyer {
-      max-height: 84vh;
-      max-width: 42vw;
-      width: auto;
-      height: auto;
       border-radius: 10px;
       box-shadow: 0 14px 44px rgba(0,0,0,0.55);
     }
-    .promo-ticket {
-      margin: 0 !important;
-      width: min(340px, 42vw);
+    .promo-popup .promo-ticket {
+      margin: 0;
       box-shadow: 0 14px 44px rgba(0,0,0,0.45);
+    }
+    /* Events popup: single centered ticket box */
+    .promo-inner:not(.promo-overlap) .promo-ticket { width: min(380px, 88vw); }
+
+    /* Home popup: flyer on the left (fully visible), ticket box overlapping only
+       its right edge and extending off to the right */
+    .promo-inner.promo-overlap {
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+      gap: 0;
+    }
+    .promo-overlap .promo-flyer {
+      height: min(80vh, 640px);
+      width: auto;
+      max-width: 52vw;
+      position: relative;
+      z-index: 1;
+      flex: 0 0 auto;
+    }
+    .promo-inner.promo-overlap .promo-ticket {
+      position: relative;
+      z-index: 2;
+      margin-left: -52px;
+      width: min(330px, 46vw);
+      flex: 0 0 auto;
+    }
+
+    .ticket-show {
+      display: block;
+      white-space: nowrap;
+      font-weight: 700;
+      font-style: normal;
+      color: var(--forest);
+      margin-top: 0.2rem;
     }
     .promo-close {
       position: absolute;
@@ -350,9 +382,8 @@
     .promo-close:hover { background: rgba(0,0,0,0.62); }
 
     @media (max-width: 600px) {
-      .promo-popup .promo-inner { flex-direction: column; gap: 16px; overflow-y: auto; }
-      .promo-flyer { max-width: 82vw; max-height: 56vh; }
-      .promo-ticket { width: min(360px, 84vw); }
+      .promo-overlap .promo-flyer { max-width: 50vw; height: min(60vh, 440px); }
+      .promo-inner.promo-overlap .promo-ticket { margin-left: -28px; width: min(215px, 44vw); }
     }
 
     .albums-note {
@@ -625,21 +656,23 @@
 
     .offer-links {
       display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      gap: 1rem;
-      padding: 0.6rem 8rem 0.4rem;
+      justify-content: center;
+      align-items: baseline;
+      gap: 2.5rem;
+      padding: 0.7rem 1rem 0.4rem;
     }
 
     .offer-link {
-      font-size: clamp(1rem, 1.7vw, 1.47rem);
-      line-height: 1.1;
+      font-size: clamp(1rem, 1.7vw, 1.4rem);
+      line-height: 1.2;
     }
 
-    .offer-links .offer-link:last-child { text-align: right; }
+    #offerQ { text-align: center; }
+    @media (min-width: 601px) { #offerQ { font-size: 2rem; } }
 
     @media (max-width: 600px) {
-      .offer-links { padding: 0.4rem 1rem; }
+      .offer-links { padding: 0.4rem 1rem; gap: 1.6rem; }
+      .faq-contact-heading { font-size: clamp(1.15rem, 4.2vw, 1.45rem); }
       .faq-q:not(.faq-q-main) {
         white-space: nowrap;
         text-align: center;
@@ -649,9 +682,10 @@
 
     .faq-contact-heading {
       font-family: 'Cormorant', serif;
-      font-size: 1.4rem;
+      font-size: 2.1rem;
       font-weight: 700;
       color: var(--forest);
+      text-align: center;
       text-decoration: underline;
       text-decoration-color: var(--moss);
       text-underline-offset: 4px;
@@ -1292,13 +1326,13 @@
   <!-- Home promo popup (auto-hides after Sept 12, 2026; close via X) -->
   <div id="promoPopup" class="promo-popup" style="display:none;">
     <button class="promo-close" onclick="closePromo('promoPopup')" aria-label="Close">&times;</button>
-    <div class="promo-inner">
+    <div class="promo-inner promo-overlap">
+      <img class="promo-flyer" src="vingette-flyer.jpg" alt="Vingette — Chronic Presents, After Dark, Saturday 12th at 9:30pm, IceBox Project Space" />
       <div class="ticket-box promo-ticket">
         <div class="ticket-label">Tickets</div>
-        <p class="ticket-text">Click here to purchase your tickets for Cabaret After Dark</p>
+        <p class="ticket-text">Click here to purchase your tickets for<br><span class="ticket-show">Cabaret After Dark</span></p>
         <a class="ticket-link" href="https://fringearts.my.salesforce-sites.com/ticket/#/events/a0SUO00000KgwLc2AJ" target="_blank" rel="noopener">Buy Tickets &rarr;</a>
       </div>
-      <img class="promo-flyer" src="vingette-flyer.jpg" alt="Vingette — Chronic Presents, After Dark, Saturday 12th at 9:30pm, IceBox Project Space" />
     </div>
   </div>
 
@@ -1308,7 +1342,7 @@
     <div class="promo-inner">
       <div class="ticket-box promo-ticket">
         <div class="ticket-label">Tickets</div>
-        <p class="ticket-text">Click here to purchase your tickets for Cabaret After Dark</p>
+        <p class="ticket-text">Click here to purchase your tickets for<br><span class="ticket-show">Cabaret After Dark</span></p>
         <a class="ticket-link" href="https://fringearts.my.salesforce-sites.com/ticket/#/events/a0SUO00000KgwLc2AJ" target="_blank" rel="noopener">Buy Tickets &rarr;</a>
       </div>
     </div>
@@ -1405,8 +1439,8 @@
       <div class="faq-q" id="offerQ">What does Chronic Presents offer?</div>
       <div class="faq-a">
         <div class="offer-links">
-          <span class="faq-link offer-link" onclick="showPage('events', document.querySelectorAll('nav button')[2])">Events</span>
-          <span class="faq-link offer-link" onclick="showPage('rentals', document.querySelectorAll('nav button')[3])">Equipment Rentals</span>
+          <span class="faq-link offer-link" onclick="showPage('events')">Events</span>
+          <span class="faq-link offer-link" onclick="showPage('rentals')">Equipment Rentals</span>
         </div>
       </div>
     </div>
@@ -1457,6 +1491,7 @@
           <a class="event-link" onclick="goToAlbum('baynton-manor-halloween')">Baynton Manor Halloween Party ft Chronic Presents</a>
           <a class="event-link" onclick="goToAlbum('coffee-club')">Chronic Presents x The Studio 222 Loft Social Club &ldquo;Coffee Club&rdquo;</a>
           <a class="event-link" onclick="goToAlbum('dangelo-listening-party')">Chronic Presents x The Studio 222 Loft Social Club &ldquo;D&rsquo;Angelo Listening Party&rdquo;</a>
+          <a class="event-link" onclick="goToAlbum('asian-art-initiative-open-house')">Asian Art Initiative Open House feat. Chronic Presents</a>
         </div>
 
         <div class="upcoming-banner">
@@ -1466,14 +1501,14 @@
 
         <div class="upcoming-list">
           <div class="upcoming-slot">
-            <div class="slot-title">International Black &amp; Indigenous Circus Week x Fringe Arts</div>
-            <div class="slot-detail">September 12th @ 9:30pm &middot; Icebox Space</div>
+            <div class="slot-title">International Black &amp; Indigenous Circus Week<br>Cabaret After Dark</div>
+            <div class="slot-detail">September 12th @ 9:30pm &middot; Icebox Project Space</div>
           </div>
         </div>
 
         <div class="ticket-box">
           <div class="ticket-label">Tickets</div>
-          <p class="ticket-text">Click here to purchase your tickets for Cabaret After Dark</p>
+          <p class="ticket-text">Click here to purchase your tickets for<br><span class="ticket-show">Cabaret After Dark</span></p>
           <a class="ticket-link" href="https://fringearts.my.salesforce-sites.com/ticket/#/events/a0SUO00000KgwLc2AJ" target="_blank" rel="noopener">Buy Tickets &rarr;</a>
         </div>
 
@@ -1688,6 +1723,20 @@
         <img src="albums/dangelo-listening-party/2.jpg" loading="lazy" alt="">
         <img src="albums/dangelo-listening-party/3.jpg" loading="lazy" alt="">
         <img src="albums/dangelo-listening-party/4.jpg" loading="lazy" alt="">
+      </div>
+    </div>
+
+    <div class="album" id="album-asian-art-initiative-open-house">
+      <h3 class="album-title">Asian Art Initiative Open House feat. Chronic Presents</h3>
+      <div class="album-grid">
+        <img src="albums/asian-art-initiative-open-house/1.jpg" loading="lazy" alt="">
+        <img src="albums/asian-art-initiative-open-house/2.jpg" loading="lazy" alt="">
+        <img src="albums/asian-art-initiative-open-house/3.jpg" loading="lazy" alt="">
+        <img src="albums/asian-art-initiative-open-house/4.jpg" loading="lazy" alt="">
+        <img src="albums/asian-art-initiative-open-house/5.jpg" loading="lazy" alt="">
+        <img src="albums/asian-art-initiative-open-house/6.jpg" loading="lazy" alt="">
+        <img src="albums/asian-art-initiative-open-house/7.jpg" loading="lazy" alt="">
+        <img src="albums/asian-art-initiative-open-house/8.jpg" loading="lazy" alt="">
       </div>
     </div>
 
@@ -1940,7 +1989,7 @@
     '2026-09-09': { title: 'International Black & Indigenous Circus Week', light: true },
     '2026-09-10': { title: 'International Black & Indigenous Circus Week', light: true },
     '2026-09-11': { title: 'International Black & Indigenous Circus Week', light: true },
-    '2026-09-12': { title: 'International Black & Indigenous Circus Week', time: '9:30pm', location: 'I.B.I.C.W. x Fringe Arts \u00b7 Icebox Space' },
+    '2026-09-12': { title: 'International Black & Indigenous Circus Week', time: '9:30pm', location: 'Cabaret After Dark \u00b7 Icebox Project Space' },
   };
 
   let calDate = new Date();
