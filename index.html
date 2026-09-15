@@ -793,7 +793,7 @@
     .events-bubble .event-link:last-child { border-bottom: none; }
     .events-bubble .event-link:hover { color: var(--amber); text-decoration: underline; }
 
-    .all-events-link, .all-albums-link {
+    .all-albums-link {
       display: block;
       text-align: center;
       margin-top: 1rem;
@@ -805,8 +805,27 @@
       text-underline-offset: 4px;
       cursor: pointer;
     }
-    .all-events-link:hover, .all-albums-link:hover { color: var(--amber); }
-    .all-events-link { display: none; margin-top: 1.9rem; } /* shown on mobile only */
+    .all-albums-link:hover { color: var(--amber); }
+
+    /* "Click here for all events" sits inside the events box as its own row */
+    .all-events-link {
+      display: none; /* shown on mobile only */
+      padding: 1rem 0 0.4rem;
+      text-align: center;
+      font-family: 'Life Savers', cursive;
+      font-weight: 700;
+      font-size: 1.12rem;
+      color: var(--forest);
+      text-decoration: underline;
+      text-underline-offset: 4px;
+      cursor: pointer;
+    }
+    .all-events-link:hover { color: var(--amber); }
+
+    /* Desktop: the all-events link is hidden, so drop the last event's divider */
+    @media (min-width: 681px) {
+      .events-bubble .event-link:nth-last-child(2) { border-bottom: none; }
+    }
 
     /* Full-screen "all events" popup */
     .mobile-menu.events-menu {
@@ -906,6 +925,18 @@
       font-size: 1.02rem;
       margin-top: 0.25rem;
     }
+
+    .upcoming-slot .slot-link {
+      display: inline-block;
+      margin-top: 0.6rem;
+      color: var(--forest);
+      font-family: 'Life Savers', cursive;
+      font-weight: 700;
+      font-size: 1.05rem;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+    .upcoming-slot .slot-link:hover { color: var(--amber); }
 
     .ticket-box {
       margin-top: 1.4rem;
@@ -1114,9 +1145,18 @@
       transition: opacity 0.15s;
     }
 
-    .cal-tooltip.show { opacity: 1; }
+    .cal-tooltip.show { opacity: 1; pointer-events: auto; }
     .cal-tooltip .tt-title { font-weight: 700; display: block; margin-bottom: 0.2rem; line-height: 1.3; }
     .cal-tooltip .tt-meta { color: var(--amber-pale); display: block; font-weight: 600; }
+    .cal-tooltip .tt-link {
+      display: inline-block;
+      margin-top: 0.45rem;
+      color: #ffd98a;
+      font-weight: 700;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+    .cal-tooltip .tt-link:hover { color: #ffffff; }
 
     @media (max-width: 760px) {
       .events-layout { grid-template-columns: 1fr; }
@@ -1543,7 +1583,15 @@
           <div class="upcoming-slot">
             <div class="slot-title">Flow Fest Philly</div>
             <div class="slot-detail">October 4th &middot; 10am&ndash;10pm &middot; The Lighthouse 1893</div>
+            <a class="slot-link" href="https://sweatpals.com/event/flow-fest-philly?utm_source=host_11ff21e3-e7dd-4a7f-9fc3-e29d994b5ded&amp;utm_medium=shared_link&amp;utm_campaign=event_share_4646bda8-6c4d-4681-9c12-48f7ad3a3ea0" target="_blank" rel="noopener">Grab tickets here!</a>
           </div>
+        </div>
+
+        <div class="event-flyers">
+          <img src="flowfest-chronic-artists.png" loading="lazy" alt="Chronic Presents — Meet the Artists: Vignette (PHL 26 Flow Fest)" />
+          <img src="flowfest-chronic-workshops.png" loading="lazy" alt="Chronic Presents workshops at PHL 26 Flow Fest" />
+          <img src="flowfest-main.jpg" loading="lazy" alt="Flow Fest Philly — Oct 4, The Lighthouse 1893" />
+          <img src="flowfest-schedule.jpg" loading="lazy" alt="Flow Fest Philly workshop schedule" />
         </div>
       </div>
 
@@ -1897,7 +1945,7 @@
       <h3 class="album-title">Music Videos</h3>
       <div class="video-frame-wrap">
         <iframe src="https://player.vimeo.com/video/1207031784"
-                allow="autoplay; fullscreen; picture-in-picture"
+                allow="fullscreen; picture-in-picture"
                 allowfullscreen title="Chronic Presents music video"></iframe>
       </div>
       <div class="video-frame-wrap">
@@ -1915,17 +1963,24 @@
     <div class="video-category">
       <h3 class="album-title">Documentaries</h3>
       <div class="video-frame-wrap">
-        <div id="ytplayer"></div>
-        <a class="video-fallback" id="videoFallback"
-           href="https://youtu.be/JVYw9mA_iOQ" target="_blank" rel="noopener">
-          <img src="https://img.youtube.com/vi/JVYw9mA_iOQ/maxresdefault.jpg"
-               onerror="this.src='https://img.youtube.com/vi/JVYw9mA_iOQ/hqdefault.jpg'"
-               alt="Watch the Chronic Presents video on YouTube" />
-          <div class="fallback-overlay">
-            <div class="fallback-play"></div>
-            <div class="fallback-text">Watch on YouTube</div>
-          </div>
-        </a>
+        <iframe src="https://www.youtube-nocookie.com/embed/JVYw9mA_iOQ"
+                allow="accelerometer; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen title="Chronic Presents documentary"></iframe>
+      </div>
+    </div>
+
+    <div class="video-category">
+      <h3 class="album-title">Performances</h3>
+      <div class="album-subtitle">&ldquo;Annual IBICW Cabaret After Dark&rdquo;</div>
+      <div class="video-frame-wrap">
+        <iframe src="https://player.vimeo.com/video/1226792520"
+                allow="fullscreen; picture-in-picture"
+                allowfullscreen title="Chronic Presents performance"></iframe>
+      </div>
+      <div class="video-frame-wrap">
+        <iframe src="https://player.vimeo.com/video/1226788939"
+                allow="fullscreen; picture-in-picture"
+                allowfullscreen title="Chronic Presents performance"></iframe>
       </div>
     </div>
 
@@ -1997,7 +2052,6 @@
     });
     if (!noScroll) window.scrollTo({ top: 0, behavior: 'smooth' });
     if (id === 'faq') requestAnimationFrame(fitOfferHeading);
-    if (id === 'videoalbums') ytActivate();
   }
 
   function toggleMobileMenu() {
@@ -2050,7 +2104,7 @@
 
   // Upcoming events: 'YYYY-MM-DD': { title, time, location }
   const calEvents = {
-    '2026-10-04': { title: 'Flow Fest Philly', time: '10am', location: 'The Lighthouse 1893' },
+    '2026-10-04': { title: 'Flow Fest Philly', time: '10am', location: 'The Lighthouse 1893', link: 'https://sweatpals.com/event/flow-fest-philly?utm_source=host_11ff21e3-e7dd-4a7f-9fc3-e29d994b5ded&utm_medium=shared_link&utm_campaign=event_share_4646bda8-6c4d-4681-9c12-48f7ad3a3ea0' },
   };
 
   // Open the calendar on the current month so today's date is shown
@@ -2059,14 +2113,29 @@
 
   // Styled hover/tap tooltip
   let calTip = null;
+  let calHideTimer = null;
+  function calCancelHide() { if (calHideTimer) { clearTimeout(calHideTimer); calHideTimer = null; } }
+  function calScheduleHide() {
+    calCancelHide();
+    calHideTimer = setTimeout(function () { if (calTip) calTip.classList.remove('show'); }, 280);
+  }
   function calTipEl() {
-    if (!calTip) { calTip = document.createElement('div'); calTip.className = 'cal-tooltip'; document.body.appendChild(calTip); }
+    if (!calTip) {
+      calTip = document.createElement('div');
+      calTip.className = 'cal-tooltip';
+      document.body.appendChild(calTip);
+      calTip.addEventListener('mouseenter', calCancelHide);
+      calTip.addEventListener('mouseleave', calScheduleHide);
+    }
     return calTip;
   }
   function calShowTip(cell, ev) {
+    calCancelHide();
     const t = calTipEl();
     const meta = [ev.time, ev.location].filter(Boolean).join(' \u00b7 ');
-    t.innerHTML = '<span class="tt-title">' + ev.title + '</span>' + (meta ? '<span class="tt-meta">' + meta + '</span>' : '');
+    let h = '<span class="tt-title">' + ev.title + '</span>' + (meta ? '<span class="tt-meta">' + meta + '</span>' : '');
+    if (ev.link) h += '<a class="tt-link" href="' + ev.link + '" target="_blank" rel="noopener">Grab tickets here!</a>';
+    t.innerHTML = h;
     t.classList.add('show');
     const r = cell.getBoundingClientRect();
     const half = t.offsetWidth / 2;
@@ -2075,7 +2144,7 @@
     t.style.left = left + 'px';
     t.style.top = (r.top - 8) + 'px';
   }
-  function calHideTip() { if (calTip) calTip.classList.remove('show'); }
+  function calHideTip() { calScheduleHide(); }
   document.addEventListener('click', calHideTip);
   window.addEventListener('scroll', calHideTip, true);
 
@@ -2257,60 +2326,6 @@
 
     window.location.href = mailto;
   }
-
-  // ── YouTube player with autoplay + graceful fallback (lives on Albums tab) ──
-  var ytPlayer = null;
-  var ytLoaded = false;
-  var ytFallbackShown = false;
-  var ytWatchdogStarted = false;
-
-  function ytShowFallback() {
-    if (ytFallbackShown || ytLoaded) return;
-    ytFallbackShown = true;
-    var pl = document.getElementById('ytplayer');
-    if (pl) pl.style.display = 'none';
-    var fb = document.getElementById('videoFallback');
-    if (fb) fb.classList.add('show');
-  }
-
-  // Called when the Albums tab is opened: play the video and start the failure watchdog
-  function ytActivate() {
-    if (ytPlayer && ytPlayer.playVideo) {
-      try { ytPlayer.playVideo(); } catch (e) {}
-    }
-    if (!ytWatchdogStarted) {
-      ytWatchdogStarted = true;
-      setTimeout(ytShowFallback, 6000);
-    }
-  }
-
-  (function () {
-    var VIDEO_ID = 'JVYw9mA_iOQ';
-    var tag = document.createElement('script');
-    tag.src = 'https://www.youtube.com/iframe_api';
-    tag.onerror = ytShowFallback; // API script itself blocked → fallback
-    document.head.appendChild(tag);
-
-    window.onYouTubeIframeAPIReady = function () {
-      ytPlayer = new YT.Player('ytplayer', {
-        host: 'https://www.youtube-nocookie.com',
-        videoId: VIDEO_ID,
-        width: '100%',
-        height: '100%',
-        playerVars: {
-          autoplay: 1, mute: 1, rel: 0,
-          modestbranding: 1, playsinline: 1
-        },
-        events: {
-          onReady: function (e) { e.target.playVideo(); },
-          onStateChange: function (e) {
-            if (e.data === 1 || e.data === 3) ytLoaded = true; // playing/buffering
-          },
-          onError: function () { ytShowFallback(); }
-        }
-      });
-    };
-  })();
 </script>
 
 </body>
