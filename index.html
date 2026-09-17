@@ -590,8 +590,8 @@
       left: -40px;
     }
 
-    /* ── FAQ ── */
-    .faq-item {
+    /* ── OUR PURPOSE ── */
+    .our-purpose-item {
       background: var(--cream-light);
       border-radius: 14px;
       padding: 1.8rem 2rem;
@@ -600,7 +600,7 @@
       box-shadow: 0 2px 14px #6B422215;
     }
 
-    .faq-q {
+    .our-purpose-q {
       font-family: 'Life Savers', cursive;
       font-size: 1.4rem;
       font-weight: 700;
@@ -609,25 +609,25 @@
       letter-spacing: 0.02em;
     }
 
-    .faq-q-main {
+    .our-purpose-q-main {
       text-align: center;
       font-size: 2.1rem;
       white-space: nowrap;
     }
 
     @media (max-width: 480px) {
-      .faq-q-main { font-size: 1.5rem; white-space: normal; }
+      .our-purpose-q-main { font-size: 1.5rem; white-space: normal; }
     }
 
-    .faq-a {
+    .our-purpose-a {
       font-size: 1.1rem;
       line-height: 1.85;
       color: var(--text-mid);
     }
 
-    .faq-a ul { list-style: none; padding: 0; margin-top: 0.6rem; }
+    .our-purpose-a ul { list-style: none; padding: 0; margin-top: 0.6rem; }
 
-    .faq-a ul li {
+    .our-purpose-a ul li {
       padding: 0.35rem 0 0.35rem 1.4rem;
       position: relative;
       font-size: 1.1rem;
@@ -635,7 +635,7 @@
       color: var(--text-mid);
     }
 
-    .faq-a ul li::before {
+    .our-purpose-a ul li::before {
       content: '✦';
       position: absolute;
       left: 0;
@@ -644,7 +644,7 @@
       top: 0.6rem;
     }
 
-    .faq-link {
+    .our-purpose-link {
       color: var(--forest-mid);
       text-decoration: underline;
       text-decoration-color: var(--moss);
@@ -654,7 +654,7 @@
       font-size: 1.1rem;
     }
 
-    .faq-link:hover { color: var(--red-mid); }
+    .our-purpose-link:hover { color: var(--red-mid); }
 
     .offer-links {
       display: flex;
@@ -674,15 +674,15 @@
 
     @media (max-width: 600px) {
       .offer-links { padding: 0.4rem 1rem; gap: 1.6rem; }
-      .faq-contact-heading { font-size: clamp(1.15rem, 4.2vw, 1.45rem); }
-      .faq-q:not(.faq-q-main) {
+      .our-purpose-contact-heading { font-size: clamp(1.15rem, 4.2vw, 1.45rem); }
+      .our-purpose-q:not(.our-purpose-q-main) {
         white-space: nowrap;
         text-align: center;
         font-size: clamp(0.8rem, 4.1vw, 1.4rem);
       }
     }
 
-    .faq-contact-heading {
+    .our-purpose-contact-heading {
       font-family: 'Life Savers', cursive;
       font-size: 2.1rem;
       font-weight: 700;
@@ -1441,7 +1441,7 @@
   <nav id="tabs">
     <button class="nav-hamburger" onclick="toggleMobileMenu()" aria-label="Open menu"><span></span><span></span><span></span></button>
     <button class="active nav-primary" data-page="home" onclick="showPage('home', this)">Home</button>
-    <button data-page="faq" onclick="showPage('faq', this)">Our Purpose</button>
+    <button data-page="our-purpose" onclick="showPage('our-purpose', this)">Our Purpose</button>
     <button class="nav-primary" data-page="events" onclick="showPage('events', this)">Events</button>
     <button class="nav-primary" data-page="rentals" onclick="showPage('rentals', this)">Rentals</button>
     <button data-page="albums" onclick="showPage('albums', this)">Photo Albums</button>
@@ -1452,7 +1452,7 @@
   <div id="mobileMenu" class="mobile-menu">
     <button class="mobile-menu-close" onclick="closeMobileMenu()" aria-label="Close menu">&times;</button>
     <a onclick="mobileNav('home')">Home</a>
-    <a onclick="mobileNav('faq')">Our Purpose</a>
+    <a onclick="mobileNav('our-purpose')">Our Purpose</a>
     <a onclick="mobileNav('events')">Events</a>
     <a onclick="mobileNav('rentals')">Equipment Rentals</a>
     <a onclick="mobileNav('albums')">Photo Albums</a>
@@ -1499,30 +1499,30 @@
     </div>
   </section>
 
-  <!-- FAQ -->
-  <section class="page" id="page-faq">
+  <!-- OUR PURPOSE -->
+  <section class="page" id="page-our-purpose">
     <div class="section-heading">Our Purpose</div>
     <div class="divider"></div>
 
-    <div class="faq-item">
-      <div class="faq-q faq-q-main">What is Chronic Presents?</div>
-      <p class="faq-a">
+    <div class="our-purpose-item">
+      <div class="our-purpose-q our-purpose-q-main">What is Chronic Presents?</div>
+      <p class="our-purpose-a">
         Chronic Presents is a traveling movement arts showcase dedicated to amplifying the voices, talents, and lived experiences of dancers with chronic illness and accessibility needs through the Movement Arts. By creating inclusive performance spaces, we celebrate resilience, creativity, and self-expression while fostering meaningful connections between artists, audiences, small businesses, and local resource providers. Chronic brings together community engagement and charitable fundraising to build support networks and create lasting impacts.
       </p>
     </div>
 
-    <div class="faq-item">
-      <div class="faq-q" id="offerQ">What does Chronic Presents offer?</div>
-      <div class="faq-a">
+    <div class="our-purpose-item">
+      <div class="our-purpose-q" id="offerQ">What does Chronic Presents offer?</div>
+      <div class="our-purpose-a">
         <div class="offer-links">
-          <span class="faq-link offer-link" onclick="showPage('events')">Events</span>
-          <span class="faq-link offer-link" onclick="showPage('rentals')">Equipment Rentals</span>
+          <span class="our-purpose-link offer-link" onclick="showPage('events')">Events</span>
+          <span class="our-purpose-link offer-link" onclick="showPage('rentals')">Equipment Rentals</span>
         </div>
       </div>
     </div>
 
-    <div class="faq-item">
-      <div class="faq-contact-heading">Contact Us</div>
+    <div class="our-purpose-item">
+      <div class="our-purpose-contact-heading">Contact Us</div>
       <div class="contact-line">
         <span class="icon-dot icon-email">✉</span>
         chronicpresents@gmail.com
@@ -1576,10 +1576,16 @@
 
         <div class="upcoming-banner">
           <div class="label">Stay Tuned</div>
-          <div class="headline">Upcoming event in October!</div>
+          <div class="headline">Upcoming events in October!</div>
         </div>
 
         <div class="upcoming-list">
+          <div class="upcoming-slot">
+            <div class="slot-title">Dark Angels Present:<br>Body Count: A Serial Killer Cabaret</div>
+            <div class="slot-detail">October 3rd &middot; 9pm&ndash;11:30pm</div>
+            <div class="slot-detail">Bar XIII &middot; Wilmington, DE</div>
+            <a class="slot-link" href="https://www.eventbrite.com/e/dark-angels-present-body-count-a-serial-killer-cabaret-tickets-2001089915806" target="_blank" rel="noopener">Grab tickets here!</a>
+          </div>
           <div class="upcoming-slot">
             <div class="slot-title">Flow Fest Philly</div>
             <div class="slot-detail">October 4th &middot; 10am&ndash;10pm</div> 
@@ -2051,7 +2057,7 @@
       b.classList.toggle('active', b.dataset.page === id);
     });
     if (!noScroll) window.scrollTo({ top: 0, behavior: 'smooth' });
-    if (id === 'faq') requestAnimationFrame(fitOfferHeading);
+    if (id === 'our-purpose') requestAnimationFrame(fitOfferHeading);
   }
 
   function toggleMobileMenu() {
@@ -2104,6 +2110,7 @@
 
   // Upcoming events: 'YYYY-MM-DD': { title, time, location }
   const calEvents = {
+    '2026-10-03': { title: 'Dark Angels Present: Body Count: A Serial Killer Cabaret', time: '9pm', location: 'Bar XIII \u00b7 Wilmington, DE', link: 'https://www.eventbrite.com/e/dark-angels-present-body-count-a-serial-killer-cabaret-tickets-2001089915806' },
     '2026-10-04': { title: 'Flow Fest Philly', time: '10am', location: 'The Lighthouse 1893', link: 'https://sweatpals.com/event/flow-fest-philly?utm_source=host_11ff21e3-e7dd-4a7f-9fc3-e29d994b5ded&utm_medium=shared_link&utm_campaign=event_share_4646bda8-6c4d-4681-9c12-48f7ad3a3ea0' },
   };
 
@@ -2211,8 +2218,8 @@
 
   function applyDualFont() {
     var selectors = [
-      '.section-heading', '.events-subhead', '.faq-q',
-      '.faq-contact-heading', '.upcoming-banner .headline', '.rental-name'
+      '.section-heading', '.events-subhead', '.our-purpose-q',
+      '.our-purpose-contact-heading', '.upcoming-banner .headline', '.rental-name'
     ];
     selectors.forEach(function (sel) {
       document.querySelectorAll(sel).forEach(function (el) {
@@ -2241,7 +2248,7 @@
       return;
     }
 
-    var parent = el.parentElement; // the FAQ bubble
+    var parent = el.parentElement; // the Our Purpose bubble
     var ps = getComputedStyle(parent);
     var avail = parent.clientWidth
       - parseFloat(ps.paddingLeft) - parseFloat(ps.paddingRight);
