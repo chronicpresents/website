@@ -99,6 +99,7 @@
       min-width: 90px;
       height: auto;
       display: block;
+      cursor: pointer;
     }
 
     /* ── TABS ── */
@@ -569,6 +570,30 @@
     .section-heading.dual-font .ital,
     .section-heading.dual-font .up {
       font-weight: 700;
+    }
+
+    /* "Coming soon" placeholder (Barre tab) */
+    .coming-soon {
+      text-align: center;
+      max-width: 640px;
+      margin: 3.5rem auto 4rem;
+      padding: 0 1.2rem;
+    }
+    .coming-soon-big {
+      font-family: 'Life Savers', cursive;
+      font-weight: 800;
+      color: var(--forest);
+      font-size: clamp(2rem, 6vw, 3.2rem);
+      line-height: 1.2;
+      -webkit-text-stroke: 0.5px var(--forest);
+    }
+    .coming-soon-sub {
+      margin-top: 1.2rem;
+      font-family: 'Life Savers', cursive;
+      font-weight: 600;
+      color: var(--cream-light);
+      font-size: clamp(1rem, 2.6vw, 1.2rem);
+      line-height: 1.6;
     }
 
     /* Uniform font — per-word alternation neutralized */
@@ -1401,7 +1426,7 @@
       nav {
         flex-wrap: nowrap;
         position: relative;
-        padding: 0 44px;
+        padding: 0 38px;
       }
       .nav-hamburger {
         display: flex;
@@ -1412,9 +1437,10 @@
       }
       nav button:not(.nav-primary):not(.nav-hamburger) { display: none; }
       nav button.nav-primary {
-        padding: 0.6rem 0.5rem;
-        font-size: 0.8rem;
-        letter-spacing: 0.03em;
+        padding: 0.6rem 0.4rem;
+        font-size: 0.74rem;
+        letter-spacing: 0.02em;
+        white-space: nowrap;
       }
 
       body {
@@ -1446,14 +1472,15 @@
 <header>
   <div class="header-banner">
     <img class="hb-photo" src="header_bg.jpg" alt="" />
-    <img class="hb-logo" src="logo_circle.png" alt="Chronic Presents" />
+    <img class="hb-logo" src="logo_circle.png" alt="Chronic Presents — Home" role="button" tabindex="0" title="Home" onclick="showPage('home')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();showPage('home');}" />
   </div>
   <nav id="tabs">
     <button class="nav-hamburger" onclick="toggleMobileMenu()" aria-label="Open menu"><span></span><span></span><span></span></button>
-    <button class="active nav-primary" data-page="home" onclick="showPage('home', this)">Home</button>
+    <button class="active" data-page="home" onclick="showPage('home', this)">Home</button>
     <button data-page="our-purpose" onclick="showPage('our-purpose', this)">Our Purpose</button>
     <button class="nav-primary" data-page="events" onclick="showPage('events', this)">Events</button>
     <button class="nav-primary" data-page="rentals" onclick="showPage('rentals', this)">Rentals</button>
+    <button class="nav-primary" data-page="barre" onclick="showPage('barre', this)">Barre Classes</button>
     <button data-page="albums" onclick="showPage('albums', this)">Photo Albums</button>
     <button data-page="videoalbums" onclick="showPage('videoalbums', this)">Video Albums</button>
     <button data-page="contact" onclick="showPage('contact', this)">Contact</button>
@@ -1465,6 +1492,7 @@
     <a onclick="mobileNav('our-purpose')">Our Purpose</a>
     <a onclick="mobileNav('events')">Events</a>
     <a onclick="mobileNav('rentals')">Equipment Rentals</a>
+    <a onclick="mobileNav('barre')">Barre Classes</a>
     <a onclick="mobileNav('albums')">Photo Albums</a>
     <a onclick="mobileNav('videoalbums')">Video Albums</a>
     <a onclick="mobileNav('contact')">Contact</a>
@@ -1668,6 +1696,16 @@
         <a class="btn-rental" href="https://docs.google.com/forms/d/1ST8yM-rzhrQFU_k1-4wXd-E_wWlYhRpS8OJQ5w63BWk" target="_blank" rel="noopener">Request Rental</a>
       </div>
 
+    </div>
+  </section>
+
+  <!-- BARRE -->
+  <section class="page" id="page-barre">
+    <div class="section-heading">Barre Basics</div>
+    <div class="divider"></div>
+    <div class="coming-soon">
+      <p class="coming-soon-big">More info coming soon!</p>
+      <p class="coming-soon-sub">Class sign-ups, schedules, and a calendar are on the way. Check back soon to reserve your spot.</p>
     </div>
   </section>
 
