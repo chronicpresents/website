@@ -489,6 +489,36 @@
       border: none;
     }
 
+    /* Crisp YouTube thumbnail facade (loads the player on click) */
+    .yt-facade { cursor: pointer; }
+    .yt-facade .yt-poster {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .yt-facade .yt-play {
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 72px; height: 50px;
+      background: rgba(0,0,0,0.55);
+      border-radius: 12px;
+      transition: background 0.2s, transform 0.15s;
+    }
+    .yt-facade .yt-play::before {
+      content: "";
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-38%, -50%);
+      border-style: solid;
+      border-width: 11px 0 11px 19px;
+      border-color: transparent transparent transparent #ffffff;
+    }
+    .yt-facade:hover .yt-play,
+    .yt-facade:focus-visible .yt-play { background: #E8763A; transform: translate(-50%, -50%) scale(1.06); }
+
     /* Fallback thumbnail (hidden until embed fails) */
     .video-fallback {
       position: absolute;
@@ -2041,24 +2071,30 @@
                 allow="fullscreen; picture-in-picture"
                 allowfullscreen title="Chronic Presents music video"></iframe>
       </div>
-      <div class="video-frame-wrap">
-        <iframe src="https://www.youtube-nocookie.com/embed/AD7v2k_96dA"
-                allow="accelerometer; encrypted-media; gyroscope; picture-in-picture"
-                allowfullscreen title="Chronic Presents music video"></iframe>
+      <div class="video-frame-wrap yt-facade" data-id="AD7v2k_96dA" role="button" tabindex="0" aria-label="Play music video"
+           onclick="ytLoad(this)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();ytLoad(this);}">
+        <img class="yt-poster" src="https://i.ytimg.com/vi/AD7v2k_96dA/maxresdefault.jpg"
+             onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/AD7v2k_96dA/hqdefault.jpg';"
+             loading="lazy" alt="Chronic Presents music video" />
+        <span class="yt-play" aria-hidden="true"></span>
       </div>
-      <div class="video-frame-wrap">
-        <iframe src="https://www.youtube-nocookie.com/embed/Ew1ZSyXp3DU"
-                allow="accelerometer; encrypted-media; gyroscope; picture-in-picture"
-                allowfullscreen title="Chronic Presents music video"></iframe>
+      <div class="video-frame-wrap yt-facade" data-id="Ew1ZSyXp3DU" role="button" tabindex="0" aria-label="Play music video"
+           onclick="ytLoad(this)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();ytLoad(this);}">
+        <img class="yt-poster" src="https://i.ytimg.com/vi/Ew1ZSyXp3DU/maxresdefault.jpg"
+             onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/Ew1ZSyXp3DU/hqdefault.jpg';"
+             loading="lazy" alt="Chronic Presents music video" />
+        <span class="yt-play" aria-hidden="true"></span>
       </div>
     </div>
 
     <div class="video-category">
       <h3 class="album-title">Documentaries</h3>
-      <div class="video-frame-wrap">
-        <iframe src="https://www.youtube-nocookie.com/embed/JVYw9mA_iOQ"
-                allow="accelerometer; encrypted-media; gyroscope; picture-in-picture"
-                allowfullscreen title="Chronic Presents documentary"></iframe>
+      <div class="video-frame-wrap yt-facade" data-id="JVYw9mA_iOQ" role="button" tabindex="0" aria-label="Play documentary"
+           onclick="ytLoad(this)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();ytLoad(this);}">
+        <img class="yt-poster" src="https://i.ytimg.com/vi/JVYw9mA_iOQ/maxresdefault.jpg"
+             onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/JVYw9mA_iOQ/hqdefault.jpg';"
+             loading="lazy" alt="Chronic Presents documentary" />
+        <span class="yt-play" aria-hidden="true"></span>
       </div>
     </div>
 
@@ -2190,6 +2226,14 @@
   }
   function closeAllEvents() {
     document.getElementById('allEventsMenu').classList.remove('open');
+  }
+
+  // Load the YouTube player only when the poster facade is clicked
+  function ytLoad(el) {
+    var id = el.getAttribute('data-id');
+    if (!id) return;
+    el.innerHTML = '<iframe src="https://www.youtube-nocookie.com/embed/' + id +
+      '?autoplay=1&rel=0&modestbranding=1" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen title="Video"></iframe>';
   }
 
   // Jump from an event to its album on the Albums tab
