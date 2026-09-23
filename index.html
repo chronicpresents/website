@@ -1313,6 +1313,44 @@
     }
 
     /* ── CONTACT ── */
+    .contact-links {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      max-width: 640px;
+      margin: 0 auto 1.6rem;
+    }
+    .contact-link-btn {
+      flex: 1 1 260px;
+      max-width: 320px;
+      display: block;
+      text-align: center;
+      background: var(--cream-light);
+      border: 2px solid var(--forest);
+      border-radius: 14px;
+      padding: 1rem 1.1rem;
+      text-decoration: none;
+      box-shadow: 0 2px 12px #6B422215;
+      transition: transform 0.15s, background 0.2s;
+    }
+    .contact-link-btn:hover { transform: translateY(-2px); background: #ffffff; }
+    .contact-link-btn .cl-title {
+      display: block;
+      font-family: 'Life Savers', cursive;
+      font-weight: 700;
+      color: var(--forest);
+      font-size: 1.15rem;
+    }
+    .contact-link-btn .cl-sub {
+      display: block;
+      margin-top: 0.25rem;
+      color: var(--amber);
+      font-weight: 600;
+      font-size: 0.9rem;
+      line-height: 1.35;
+    }
+
     .contact-card {
       background: var(--cream-light);
       border-radius: 14px;
@@ -2051,6 +2089,17 @@
   <section class="page" id="page-contact">
     <div class="section-heading">Contact Us</div>
     <div class="divider"></div>
+
+    <div class="contact-links">
+      <a class="contact-link-btn" href="https://docs.google.com/forms/d/e/1FAIpQLSdLQrYWqpOvhhttj1IzaSRhtV0ol5-vb3hPE2U4DOW3lT_qyA/viewform" target="_blank" rel="noopener">
+        <span class="cl-title">Monthly Newsletter</span>
+        <span class="cl-sub">Sign up for news &amp; announcements</span>
+      </a>
+      <a class="contact-link-btn" href="https://docs.google.com/forms/d/e/1FAIpQLSdmmFJCjrY3AW1qCPePkTR_h-f1KR8niK5kceRUBbOh1dLHkg/viewform" target="_blank" rel="noopener">
+        <span class="cl-title">Rental Review Form</span>
+        <span class="cl-sub">Share feedback on your rental experience</span>
+      </a>
+    </div>
 
     <div class="contact-card">
       <div style="display:grid; gap:0.2rem;">
