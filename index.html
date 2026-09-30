@@ -1006,7 +1006,8 @@
     }
 
     .upcoming-slot .slot-link {
-      display: inline-block;
+      display: block;
+      width: fit-content;
       margin-top: 0.6rem;
       color: var(--forest);
       font-family: 'Life Savers', cursive;
@@ -1016,6 +1017,19 @@
       text-underline-offset: 3px;
     }
     .upcoming-slot .slot-link:hover { color: var(--amber); }
+
+    .food-drive-slot { padding: 0.85rem 1.4rem; }
+    .food-drive-link {
+      display: block;
+      color: var(--forest);
+      font-family: 'Life Savers', cursive;
+      font-weight: 700;
+      font-size: clamp(0.85rem, 3.4vw, 1.12rem);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      white-space: nowrap;
+    }
+    .food-drive-link:hover { color: var(--amber); }
 
     .upcoming-slot .slot-promo {
       margin-top: 0.45rem;
@@ -1706,7 +1720,7 @@
 
         <div class="upcoming-banner">
           <div class="label">Stay Tuned</div>
-          <div class="headline">Upcoming events in October!</div>
+          <div class="headline">Upcoming events in October &amp; November!</div>
         </div>
 
         <div class="upcoming-list">
@@ -1722,6 +1736,15 @@
             <div class="slot-detail">October 4th &middot; 10am&ndash;10pm</div> 
             <div class="slot-detail">The Lighthouse 1893</div>
             <a class="slot-link" href="https://sweatpals.com/event/flow-fest-philly?utm_source=host_11ff21e3-e7dd-4a7f-9fc3-e29d994b5ded&amp;utm_medium=shared_link&amp;utm_campaign=event_share_4646bda8-6c4d-4681-9c12-48f7ad3a3ea0" target="_blank" rel="noopener">Grab tickets here!</a>
+          </div>
+          <div class="upcoming-slot">
+            <div class="slot-title">Chronic Presents x The Studio 222 Loft Social Club<br>&ldquo;Who Wants Seconds?&rdquo;</div>
+            <div class="slot-detail">November 21st &middot; 5&ndash;9pm</div>
+            <div class="slot-detail">Studio 222</div>
+            <a class="slot-link" href="https://forms.gle/aWE3sDkj3udQaZ2v7" target="_blank" rel="noopener">Dancer Interest Form</a>
+          </div>
+          <div class="upcoming-slot food-drive-slot">
+            <a class="food-drive-link" href="https://secure.philabundance.org/site/TR/Events/General?pg=team&amp;fr_id=1160&amp;team_id=7255" target="_blank" rel="noopener">Who Wants Seconds? - Food Drive</a>
           </div>
         </div>
 
