@@ -2328,8 +2328,8 @@
   const calEvents = {
     '2026-10-03': { title: 'Dark Angels Present: Body Count: A Serial Killer Cabaret', time: '9pm', location: 'Bar XIII \u00b7 Wilmington, DE', link: 'https://www.eventbrite.com/e/dark-angels-present-body-count-a-serial-killer-cabaret-tickets-2001089915806' },
     '2026-10-04': { title: 'Flow Fest Philly', time: '10am', location: 'The Lighthouse 1893', link: 'https://sweatpals.com/event/flow-fest-philly?utm_source=host_11ff21e3-e7dd-4a7f-9fc3-e29d994b5ded&utm_medium=shared_link&utm_campaign=event_share_4646bda8-6c4d-4681-9c12-48f7ad3a3ea0' },
-    '2026-10-22': { title: 'Chronic Presents: A Movement Directory', time: '11:00am - 1:00pm', location: 'Location: TBD' },
-    '2026-10-23': { title: 'Chronic Presents: A Movement Directory', time: '4:00pm - 6:00pm', location: 'Location: TBD' },
+    '2026-10-22': { title: 'Chronic Presents:<br>A Movement Directory', time: '11:00am - 1:00pm', location: 'Location: TBD' },
+    '2026-10-23': { title: 'Chronic Presents:<br>A Movement Directory', time: '4:00pm - 6:00pm', location: 'Location: TBD' },
     '2026-11-21': { title: 'Chronic Presents x The Studio 222 Loft Social Club "Who Wants Seconds?"', time: '5-9p', location: 'Studio 222', link: 'https://forms.gle/aWE3sDkj3udQaZ2v7', linkText: 'Dancer Interest Form' },
   };
 
@@ -2358,8 +2358,9 @@
   function calShowTip(cell, ev) {
     calCancelHide();
     const t = calTipEl();
-    const meta = [ev.time, ev.location].filter(Boolean).join(' \u00b7 ');
-    let h = '<span class="tt-title">' + ev.title + '</span>' + (meta ? '<span class="tt-meta">' + meta + '</span>' : '');
+    let h = '<span class="tt-title">' + ev.title + '</span>';
+    if (ev.time) h += '<span class="tt-meta">' + ev.time + '</span>';
+    if (ev.location) h += '<span class="tt-meta">' + ev.location + '</span>';
     if (ev.link) h += '<a class="tt-link" href="' + ev.link + '" target="_blank" rel="noopener">' + (ev.linkText || 'Grab tickets here!') + '</a>';
     t.innerHTML = h;
     t.classList.add('show');
