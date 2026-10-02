@@ -326,6 +326,11 @@
     .promo-flyer {
       border-radius: 10px;
       box-shadow: 0 14px 44px rgba(0,0,0,0.55);
+      max-width: min(460px, 90vw);
+      max-height: 90vh;
+      width: auto;
+      height: auto;
+      display: block;
     }
     .promo-popup .promo-ticket {
       margin: 0;
@@ -1576,6 +1581,14 @@
 </head>
 <body>
 
+  <!-- Homepage promo popup: Woodland Story series (auto-hides after Nov 29, 2026) -->
+  <div id="homePopup" class="promo-popup" style="display:none;" onclick="if(event.target===this)closeHomePopup()">
+    <div class="promo-inner">
+      <button class="promo-close" onclick="closeHomePopup()" aria-label="Close">&times;</button>
+      <img class="promo-flyer" src="woodland-story-flyer.jpg" alt="Chronic Presents x Rebel Arts Movement — Beginner Lollipop-Lyra Adult Series: A Woodland Story. Saturdays in November, 10:00am–11:30am. Visit chronicpresents.com to reserve your spot." />
+    </div>
+  </div>
+
 <header>
   <div class="header-banner">
     <img class="hb-photo" src="header_bg.jpg" alt="" />
@@ -1757,6 +1770,7 @@
           <img src="flowfest-chronic-workshops.png" loading="lazy" alt="Chronic Presents workshops at PHL 26 Flow Fest" />
           <img src="flowfest-main.jpg" loading="lazy" alt="Flow Fest Philly — Oct 4, The Lighthouse 1893" />
           <img src="directory-flyer.jpg" loading="lazy" alt="Chronic Presents: A Movement Artist Directory — headshots Oct 22 & 23" />
+          <img src="woodland-story-flyer.jpg" loading="lazy" alt="Chronic Presents x Rebel Arts Movement — Beginner Lollipop-Lyra Adult Series: A Woodland Story, Saturdays in November" />
           <img src="who-wants-seconds-flyer.jpg" loading="lazy" alt="Chronic Presents x The Studio 222 Loft — Who Wants Seconds? Friendsgiving Showcase Potluck, Nov 21" />
         </div>
       </div>
@@ -2308,6 +2322,20 @@
   });
   document.addEventListener('keydown', function (e) {
     if (e.key === 'Escape') closeLightbox();
+  });
+
+  // Homepage promo popup (Woodland Story series) — shows until end of Nov 29, 2026
+  var WOODLAND_DEADLINE = new Date(2026, 10, 29, 23, 59, 59);
+  function closeHomePopup() {
+    var p = document.getElementById('homePopup');
+    if (p) p.style.display = 'none';
+  }
+  (function () {
+    var p = document.getElementById('homePopup');
+    if (p && new Date() <= WOODLAND_DEADLINE) p.style.display = 'flex';
+  })();
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') closeHomePopup();
   });
 
   // Jump from an event to its album on the Albums tab
