@@ -877,8 +877,12 @@
     .events-bubble .event-link:last-child { border-bottom: none; }
     .events-bubble .event-link:hover { color: var(--amber); text-decoration: underline; }
 
+    /* Previous Events box always shows only the 3 most recent (all screens) */
+    .events-bubble .event-link:not(.recent-event) { display: none; }
+
+    /* "View all Photo Albums" lives inside the all-events popup, not on the page */
     .all-albums-link {
-      display: block;
+      display: none;
       text-align: center;
       margin-top: 1rem;
       font-family: 'Life Savers', cursive;
@@ -893,7 +897,7 @@
 
     /* "Click here for all events" sits inside the events box as its own row */
     .all-events-link {
-      display: none; /* shown on mobile only */
+      display: block;
       padding: 1rem 0 0.4rem;
       text-align: center;
       font-family: 'Life Savers', cursive;
@@ -905,11 +909,6 @@
       cursor: pointer;
     }
     .all-events-link:hover { color: var(--amber); }
-
-    /* Desktop: the all-events link is hidden, so drop the last event's divider */
-    @media (min-width: 681px) {
-      .events-bubble .event-link:nth-last-child(2) { border-bottom: none; }
-    }
 
     /* Full-screen "all events" popup */
     .mobile-menu.events-menu {
@@ -1036,6 +1035,13 @@
     }
     .food-drive-link:hover { color: var(--amber); }
     .directory-link { white-space: normal; font-size: 1.08rem; }
+    .reserve-price {
+      margin-top: 0.4rem;
+      font-family: 'Life Savers', cursive;
+      font-weight: 700;
+      color: var(--amber);
+      font-size: 1rem;
+    }
 
     .upcoming-slot .slot-promo {
       margin-top: 0.45rem;
@@ -1088,18 +1094,33 @@
     }
     .ticket-box .ticket-link:hover { transform: scale(1.04); background: var(--forest-mid); }
 
-    .event-flyers {
-      margin-top: 1.6rem;
+    /* Each event = its flyer followed by its box(es) */
+    .event-group {
+      margin-top: 2rem;
       display: flex;
       flex-direction: column;
-      gap: 1rem;
+      gap: 0.75rem;
     }
-    .event-flyers img {
+    .event-group > img {
       width: 100%;
       height: auto;
       display: block;
       border-radius: 10px;
       box-shadow: 0 4px 16px rgba(0,0,0,0.22);
+    }
+    .event-desc {
+      font-family: 'Life Savers', cursive;
+      color: var(--text-mid);
+      font-size: 0.98rem;
+      line-height: 1.6;
+      text-align: left;
+    }
+    .event-desc p { margin: 0 0 0.85rem; }
+    .event-desc p:last-child { margin-bottom: 0; }
+    .event-desc .desc-head {
+      color: var(--forest);
+      font-weight: 700;
+      font-size: 1.1rem;
     }
 
     /* ── EVENTS LAYOUT (two columns) ── */
@@ -1529,11 +1550,6 @@
       .rental-circle { width: 240px; height: 240px; }
       .hb-logo { width: 26%; }
 
-      /* Previous Events: only the 3 most recent, plus a link to the rest */
-      .events-bubble .event-link:not(.recent-event) { display: none; }
-      .all-events-link { display: block; }
-      .all-albums-link { display: none; }
-
       /* Compact tab bar: hamburger on the left, 3 primary tabs centered */
       nav {
         flex-wrap: nowrap;
@@ -1737,10 +1753,33 @@
           <div class="headline">Upcoming events in October &amp; November!</div>
         </div>
 
-        <div class="upcoming-list">
+        <!-- A Movement Directory (Oct 22-23) -->
+        <div class="event-group">
+          <img src="directory-flyer.jpg" loading="lazy" alt="Chronic Presents: A Movement Artist Directory — headshots Oct 22 & 23" />
           <div class="upcoming-slot food-drive-slot">
             <a class="food-drive-link directory-link" href="https://forms.gle/EtMrikkRFY6oJfML6" target="_blank" rel="noopener">Chronic Presents: A Movement Directory</a>
           </div>
+        </div>
+
+        <!-- A Woodland Story series (Nov 1-29) -->
+        <div class="event-group">
+          <img src="woodland-story-flyer.jpg" loading="lazy" alt="Chronic Presents x Rebel Arts Movement — Beginner Lollipop-Lyra Adult Series: A Woodland Story, Saturdays in November" />
+          <div class="upcoming-slot food-drive-slot">
+            <a class="food-drive-link" href="https://cash.app/$CHRONICMovement" target="_blank" rel="noopener">Click here to reserve your spot!</a>
+            <div class="reserve-price">$160 for 5 weeks</div>
+          </div>
+          <div class="upcoming-slot event-desc">
+            <p class="desc-head">🧚🏽 🌼 💜 Chronic Presents: A Woodland Story &ndash; series showcase.</p>
+            <p>🫂✨Together we will actualize a 4 week curriculum for 1.5 hours / Sunday morning. The final series class will be a HUGE SHOWCASE!!! Chronic is so excited to create magical decorations and transform the space into the welcoming stage the artists truly deserve.</p>
+            <p>🍄 Our theme this year:<br>Beginner Aerial Lyra Adult Series:<br>&ldquo;A Woodland Story&rdquo;</p>
+            <p>🍄 Theme: Driving down a Nordic forested road on a rainy, stormy morning and suddenly you get a flat tire. You get out the car to check and see that you&rsquo;ll have to wait for car support. While waiting, you get hungry and reach inside your glove compartment and find an old candy. When you look at it, you don&rsquo;t recognize it, but snack on it anyways. Suddenly, you feel strange, step outside the vehicle for a breath of fresh air and notice a strange little flower, unbothered by the heavy rain. All at once, you shrink down into the world of fairies who inhabit the moss, rocks and flowers of The Woodlands. They invite you to their celebration of the Rains&hellip;</p>
+            <p>🌧️ 🗿 Join us as we travel through the winding roads, rainy forests &hellip; imagining you are shrunk down to a fairies world. There will be dancing mushrooms, worms, trees and river sprites.</p>
+          </div>
+        </div>
+
+        <!-- Who Wants Seconds? (Nov 21) -->
+        <div class="event-group">
+          <img src="who-wants-seconds-flyer.jpg" loading="lazy" alt="Chronic Presents x The Studio 222 Loft — Who Wants Seconds? Friendsgiving Showcase Potluck, Nov 21" />
           <div class="upcoming-slot">
             <div class="slot-title">Chronic Presents x<br>The Studio 222 Loft<br>Social Club &ldquo;Who Wants Seconds?&rdquo;</div>
             <div class="slot-detail">November 21st &middot; 5&ndash;9pm</div>
@@ -1748,14 +1787,11 @@
             <a class="slot-link" href="https://forms.gle/aWE3sDkj3udQaZ2v7" target="_blank" rel="noopener">Dancer Interest Form</a>
           </div>
           <div class="upcoming-slot food-drive-slot">
+            <a class="food-drive-link" href="https://cash.app/$CHRONICMovement" target="_blank" rel="noopener">Click here to snag your ticket!</a>
+          </div>
+          <div class="upcoming-slot food-drive-slot">
             <a class="food-drive-link" href="https://secure.philabundance.org/site/TR/Events/General?pg=team&amp;fr_id=1160&amp;team_id=7255" target="_blank" rel="noopener">Who Wants Seconds? - Food Drive</a>
           </div>
-        </div>
-
-        <div class="event-flyers">
-          <img src="directory-flyer.jpg" loading="lazy" alt="Chronic Presents: A Movement Artist Directory — headshots Oct 22 & 23" />
-          <img src="woodland-story-flyer.jpg" loading="lazy" alt="Chronic Presents x Rebel Arts Movement — Beginner Lollipop-Lyra Adult Series: A Woodland Story, Saturdays in November" />
-          <img src="who-wants-seconds-flyer.jpg" loading="lazy" alt="Chronic Presents x The Studio 222 Loft — Who Wants Seconds? Friendsgiving Showcase Potluck, Nov 21" />
         </div>
       </div>
 
@@ -2345,7 +2381,7 @@
     '2026-11-15': { title: 'Beginner Lollipop-Lyra Adult Series', time: '10:00am - 11:30am' },
     '2026-11-22': { title: 'Beginner Lollipop-Lyra Adult Series', time: '10:00am - 11:30am' },
     '2026-11-29': { title: 'Chronic Presents x Rebel Arts Movement:<br>A Woodland Showcase', time: '10:00am - 11:30am' },
-    '2026-11-21': { title: 'Chronic Presents x The Studio 222 Loft Social Club "Who Wants Seconds?"', time: '5-9p', location: 'Studio 222', link: 'https://forms.gle/aWE3sDkj3udQaZ2v7', linkText: 'Dancer Interest Form' },
+    '2026-11-21': { title: 'Chronic Presents x<br>The Studio 222 Loft<br>Social Club "Who Wants Seconds?"', time: '5-9p', location: 'Studio 222', link: 'https://forms.gle/aWE3sDkj3udQaZ2v7', linkText: 'Dancer Interest Form' },
   };
 
   // Open the calendar on the current month so today's date is shown
