@@ -1299,7 +1299,33 @@
       color: var(--text-mid);
       text-align: center;
       max-width: 620px;
+      margin: 0 auto 1.6rem;
+    }
+
+    .rental-notice {
+      position: relative;
+      max-width: 620px;
       margin: 0 auto 3rem;
+      padding: 1rem 1.4rem;
+      background: var(--cream-light);
+      border: 2px solid var(--red-mid);
+      border-radius: 12px;
+      box-shadow: 0 3px 14px #6B422220;
+      font-family: 'Life Savers', cursive;
+      font-weight: 700;
+      font-size: clamp(1rem, 3.2vw, 1.2rem);
+      color: var(--red-deep);
+      text-align: center;
+      line-height: 1.4;
+    }
+    .rental-notice-text { display: block; }
+    .rental-notice-icon {
+      position: absolute;
+      left: 2.4rem;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 1.5em;
+      line-height: 1;
     }
 
     .rental-grid {
@@ -1822,6 +1848,11 @@
     <p class="rental-intro">
       Rent professional-grade aerial equipment from Chronic Presents. Click any item below to fill out a rental request form.
     </p>
+
+    <div class="rental-notice">
+      <span class="rental-notice-icon">&#9888;</span>
+      <span class="rental-notice-text">Only Brass will be available<br>for rent during November</span>
+    </div>
 
     <div class="rental-grid">
 
