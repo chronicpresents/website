@@ -1034,6 +1034,14 @@
       white-space: nowrap;
     }
     .food-drive-link:hover { color: var(--amber); }
+    .food-drive-text {
+      display: block;
+      color: var(--forest);
+      font-family: 'Life Savers', cursive;
+      font-weight: 700;
+      font-size: clamp(0.95rem, 4.3vw, 1.18rem);
+      white-space: nowrap;
+    }
     .directory-link { white-space: normal; font-size: 1.08rem; }
 
 
@@ -1621,9 +1629,7 @@
   <div id="homePopup" class="promo-popup" style="display:none;" onclick="if(event.target===this)closeHomePopup()">
     <div class="promo-inner">
       <button class="promo-close" onclick="closeHomePopup()" aria-label="Close">&times;</button>
-      <a href="https://forms.gle/dkrtq6VAGbPA9wFe7" target="_blank" rel="noopener" onclick="closeHomePopup()" title="Sign up for A Woodland Story">
-        <img class="promo-flyer" src="woodland-story-flyer.jpg" alt="Chronic Presents x Rebel Arts Movement — Beginner Lollipop-Lyra Adult Series: A Woodland Story. Saturdays in November, 10:00am–11:30am. Click to sign up." />
-      </a>
+      <img class="promo-flyer" src="woodland-story-flyer.jpg" alt="Chronic Presents x Rebel Arts Movement — Beginner Lollipop-Lyra Adult Series: A Woodland Story. Saturdays in November, 10:00am–11:30am." />
     </div>
   </div>
 
@@ -1790,7 +1796,7 @@
         <div class="event-group">
           <img src="woodland-story-flyer.jpg" loading="lazy" alt="Chronic Presents x Rebel Arts Movement — Beginner Lollipop-Lyra Adult Series: A Woodland Story, Saturdays in November" />
           <div class="upcoming-slot food-drive-slot">
-            <a class="food-drive-link" href="https://forms.gle/dkrtq6VAGbPA9wFe7" target="_blank" rel="noopener">Click here to reserve your spot!</a>
+            <span class="food-drive-text">All spots have been filled</span>
           </div>
           <div class="upcoming-slot event-desc">
             <p class="desc-head">🧚🏽 🌼 💜 Chronic Presents:<br>A Woodland Story &ndash; series showcase</p>
