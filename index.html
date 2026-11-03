@@ -355,45 +355,6 @@
       height: auto;
       display: block;
     }
-    .promo-popup .promo-ticket {
-      margin: 0;
-      box-shadow: 0 14px 44px rgba(0,0,0,0.45);
-    }
-    /* Events popup: single centered ticket box */
-    .promo-inner:not(.promo-overlap) .promo-ticket { width: min(380px, 88vw); }
-
-    /* Home popup: flyer on the left (fully visible), ticket box overlapping only
-       its right edge and extending off to the right */
-    .promo-inner.promo-overlap {
-      flex-direction: row;
-      align-items: center;
-      justify-content: center;
-      gap: 0;
-    }
-    .promo-overlap .promo-flyer {
-      height: min(80vh, 640px);
-      width: auto;
-      max-width: 52vw;
-      position: relative;
-      z-index: 1;
-      flex: 0 0 auto;
-    }
-    .promo-inner.promo-overlap .promo-ticket {
-      position: relative;
-      z-index: 2;
-      margin-left: -52px;
-      width: min(330px, 46vw);
-      flex: 0 0 auto;
-    }
-
-    .ticket-show {
-      display: block;
-      white-space: nowrap;
-      font-weight: 700;
-      font-style: normal;
-      color: var(--forest);
-      margin-top: 0.2rem;
-    }
     .promo-close {
       position: absolute;
       top: 16px;
@@ -411,11 +372,6 @@
       transition: background 0.2s;
     }
     .promo-close:hover { background: rgba(0,0,0,0.62); }
-
-    @media (max-width: 600px) {
-      .promo-overlap .promo-flyer { max-width: 50vw; height: min(60vh, 440px); }
-      .promo-inner.promo-overlap .promo-ticket { margin-left: -28px; width: min(215px, 44vw); }
-    }
 
     .albums-note {
       text-align: center;
@@ -1057,67 +1013,21 @@
       white-space: nowrap;
     }
     .food-drive-link:hover { color: var(--amber); }
-    .food-drive-text {
-      display: block;
-      color: var(--forest);
-      font-family: 'Life Savers', cursive;
-      font-weight: 700;
-      font-size: clamp(0.95rem, 4.3vw, 1.18rem);
-      white-space: nowrap;
-    }
-    .directory-link { white-space: normal; font-size: 1.08rem; }
-
-
-    .upcoming-slot .slot-promo {
+    .slot-cashtag {
       margin-top: 0.45rem;
       font-family: 'Life Savers', cursive;
-      font-weight: 600;
-      color: var(--forest);
-      font-size: clamp(0.7rem, 2.4vw, 0.85rem);
-      white-space: nowrap;
-    }
-    .upcoming-slot .slot-promo strong { font-weight: 800; }
-
-    .ticket-box {
-      margin-top: 1.4rem;
-      background: var(--cream-light);
-      border: 2px solid var(--forest);
-      border-radius: 12px;
-      padding: 1rem 1.4rem;
-      text-align: center;
-    }
-
-    .ticket-box .ticket-label {
-      font-size: 0.74rem;
-      letter-spacing: 0.28em;
-      text-transform: uppercase;
-      color: var(--amber);
-      font-weight: 600;
-      margin-bottom: 0.4rem;
-    }
-
-    .ticket-box .ticket-text {
-      font-family: 'Life Savers', cursive;
-      font-style: normal;
-      color: var(--forest);
-      font-size: 1.05rem;
-      line-height: 1.35;
-      margin-bottom: 0.75rem;
-    }
-
-    .ticket-box .ticket-link {
-      display: inline-block;
-      background: var(--forest);
-      color: var(--cream-light);
       font-weight: 700;
-      font-style: normal;
-      letter-spacing: 0.05em;
-      text-decoration: none;
-      padding: 0.5rem 1.3rem;
-      border-radius: 50px;
-      transition: transform 0.15s, background 0.2s;
+      color: var(--forest);
+      font-size: 1rem;
     }
-    .ticket-box .ticket-link:hover { transform: scale(1.04); background: var(--forest-mid); }
+    .slot-ticket {
+      margin-top: 0.3rem;
+      font-family: 'Life Savers', cursive;
+      font-weight: 700;
+      color: var(--amber);
+      font-size: 1.05rem;
+    }
+    .directory-link { white-space: normal; font-size: 1.08rem; }
 
     /* Each event = its flyer followed by its box(es) */
     .event-group {
@@ -1132,20 +1042,6 @@
       display: block;
       border-radius: 10px;
       box-shadow: 0 4px 16px rgba(0,0,0,0.22);
-    }
-    .event-desc {
-      font-family: 'Life Savers', cursive;
-      color: var(--text-mid);
-      font-size: 0.98rem;
-      line-height: 1.6;
-      text-align: left;
-    }
-    .event-desc p { margin: 0 0 0.85rem; }
-    .event-desc p:last-child { margin-bottom: 0; }
-    .event-desc .desc-head {
-      color: var(--forest);
-      font-weight: 700;
-      font-size: 1.1rem;
     }
 
     /* ── EVENTS LAYOUT (two columns) ── */
@@ -1805,15 +1701,13 @@
           <div class="headline">Upcoming events in November!</div>
         </div>
 
-        <!-- A Woodland Story series (Nov 1-29) -->
+        <!-- A Woodland Story showcase (Nov 29) -->
         <div class="event-group">
-          <img src="woodland-story-flyer.jpg" loading="lazy" alt="Chronic Presents x Rebel Arts Movement — Beginner Lollipop-Lyra Adult Series: A Woodland Story, Saturdays in November" />
-          <div class="upcoming-slot event-desc">
-            <p class="desc-head">🧚🏽 🌼 💜 Chronic Presents:<br>A Woodland Story &ndash; series showcase</p>
-            <p>🫂✨Together we will actualize a 4 week curriculum for 1.5 hours / Sunday morning. The final series class will be a HUGE SHOWCASE!!! Chronic is so excited to create magical decorations and transform the space into the welcoming stage the artists truly deserve.</p>
-            <p>🍄 Our theme this year:<br>Beginner Aerial Lyra Adult Series:<br>&ldquo;A Woodland Story&rdquo;</p>
-            <p>🍄 Theme: Driving down a Nordic forested road on a rainy, stormy morning and suddenly you get a flat tire. You get out the car to check and see that you&rsquo;ll have to wait for car support. While waiting, you get hungry and reach inside your glove compartment and find an old candy. When you look at it, you don&rsquo;t recognize it, but snack on it anyways. Suddenly, you feel strange, step outside the vehicle for a breath of fresh air and notice a strange little flower, unbothered by the heavy rain. All at once, you shrink down into the world of fairies who inhabit the moss, rocks and flowers of The Woodlands. They invite you to their celebration of the Rains&hellip;</p>
-            <p>🌧️ 🗿 Join us as we travel through the winding roads, rainy forests &hellip; imagining you are shrunk down to a fairies world. There will be dancing mushrooms, worms, trees and river sprites.</p>
+          <img src="woodland-story-flyer.jpg" loading="lazy" alt="Chronic Presents x Rebel Arts Movement — A Woodland Story showcase, Nov 29, 3401 I St #305, Philadelphia" />
+          <div class="upcoming-slot food-drive-slot">
+            <a class="food-drive-link" href="https://cash.app/$CHRONICMovement" target="_blank" rel="noopener">Click here to grab your ticket!</a>
+            <div class="slot-cashtag">CashApp - $CHRONICMovement</div>
+            <div class="slot-ticket">Tickets $25</div>
           </div>
         </div>
 
@@ -2423,7 +2317,7 @@
     '2026-11-08': { title: 'Beginner Lollipop-Lyra Adult Series', time: '10:00am - 11:30am' },
     '2026-11-15': { title: 'Beginner Lollipop-Lyra Adult Series', time: '10:00am - 11:30am' },
     '2026-11-22': { title: 'Beginner Lollipop-Lyra Adult Series', time: '10:00am - 11:30am' },
-    '2026-11-29': { title: 'Chronic Presents x Rebel Arts Movement:<br>A Woodland Showcase', time: '10:00am - 11:30am' },
+    '2026-11-29': { title: 'Chronic Presents x Rebel Arts Movement:<br>A Woodland Showcase', time: '7:00pm - 9:00pm', location: '3401 I St #305, Philadelphia' },
     '2026-11-21': { title: 'Chronic Presents x<br>The Studio 222 Loft<br>Social Club "Who Wants Seconds?"', time: '5-9p', location: 'Studio 222', link: 'https://forms.gle/aWE3sDkj3udQaZ2v7', linkText: 'Dancer Interest Form' },
   };
 
