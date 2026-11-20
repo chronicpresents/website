@@ -329,23 +329,8 @@
       gap: 1rem;
     }
     .promo-inner.promo-stack .promo-flyer {
-      max-height: 78vh;
+      max-height: 90vh;
     }
-    .promo-fooddrive {
-      display: inline-block;
-      background: var(--cream-light);
-      color: var(--forest);
-      font-family: 'Life Savers', cursive;
-      font-weight: 700;
-      font-size: clamp(1rem, 4.2vw, 1.2rem);
-      text-decoration: underline;
-      text-underline-offset: 3px;
-      padding: 0.7rem 1.3rem;
-      border-radius: 50px;
-      box-shadow: 0 6px 20px rgba(0,0,0,0.4);
-      text-align: center;
-    }
-    .promo-fooddrive:hover { color: var(--amber); }
     .promo-flyer {
       border-radius: 10px;
       box-shadow: 0 14px 44px rgba(0,0,0,0.55);
@@ -1562,8 +1547,7 @@
   <div id="homePopup" class="promo-popup" style="display:none;" onclick="if(event.target===this)closeHomePopup()">
     <div class="promo-inner promo-stack">
       <button class="promo-close" onclick="closeHomePopup()" aria-label="Close">&times;</button>
-      <img class="promo-flyer" src="who-wants-seconds-flyer.jpg" alt="Chronic Presents x The Studio 222 Loft — Who Wants Seconds? Friendsgiving Showcase Potluck, Nov 21" />
-      <a class="promo-fooddrive" href="https://secure.philabundance.org/site/TR/Events/General?pg=team&amp;fr_id=1160&amp;team_id=7255" target="_blank" rel="noopener" onclick="closeHomePopup()">Who Wants Seconds? - Food Drive</a>
+      <img class="promo-flyer" src="woodland-story-flyer.jpg" alt="Chronic Presents — A Woodland Story showcase, Nov 29, 7–9pm, Faceclock Gallery 1935 N. 2nd St." />
     </div>
   </div>
 
@@ -1713,22 +1697,6 @@
         <div class="upcoming-banner">
           <div class="label">Stay Tuned</div>
           <div class="headline">Upcoming events in November!</div>
-        </div>
-
-        <!-- Who Wants Seconds? (Nov 21) -->
-        <div class="event-group">
-          <img src="who-wants-seconds-flyer.jpg" loading="lazy" alt="Chronic Presents x The Studio 222 Loft — Who Wants Seconds? Friendsgiving Showcase Potluck, Nov 21" />
-          <div class="upcoming-slot">
-            <div class="slot-title">Chronic Presents x<br>The Studio 222 Loft<br>Social Club &ldquo;Who Wants Seconds?&rdquo;</div>
-            <div class="slot-detail">November 21st &middot; 5&ndash;9pm</div>
-            <div class="slot-detail">Studio 222</div>
-          </div>
-          <div class="upcoming-slot food-drive-slot">
-            <a class="food-drive-link" href="https://cash.app/$CHRONICMovement" target="_blank" rel="noopener">Click here to snag your ticket!</a>
-          </div>
-          <div class="upcoming-slot food-drive-slot">
-            <a class="food-drive-link" href="https://secure.philabundance.org/site/TR/Events/General?pg=team&amp;fr_id=1160&amp;team_id=7255" target="_blank" rel="noopener">Who Wants Seconds? - Food Drive</a>
-          </div>
         </div>
 
         <!-- A Woodland Story showcase (Nov 29) -->
@@ -2301,7 +2269,7 @@
   });
 
   // Homepage promo popup (Woodland Story series) — shows until end of Nov 29, 2026
-  var WOODLAND_DEADLINE = new Date(2026, 10, 21, 23, 59, 59);
+  var WOODLAND_DEADLINE = new Date(2026, 10, 29, 23, 59, 59);
   function closeHomePopup() {
     var p = document.getElementById('homePopup');
     if (p) p.style.display = 'none';
@@ -2335,7 +2303,6 @@
     '2026-11-15': { title: 'Beginner Lollipop-Lyra Adult Series', time: '10:00am - 11:30am' },
     '2026-11-22': { title: 'Beginner Lollipop-Lyra Adult Series', time: '10:00am - 11:30am' },
     '2026-11-29': { title: 'Chronic Presents:<br>A Woodland Showcase', time: '7:00pm - 9:00pm', location: 'Faceclock Gallery 1935 N. 2nd St.' },
-    '2026-11-21': { title: 'Chronic Presents x<br>The Studio 222 Loft<br>Social Club "Who Wants Seconds?"', time: '5-9p', location: 'Studio 222' },
   };
 
   // Open the calendar on the current month so today's date is shown
