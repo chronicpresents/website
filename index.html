@@ -329,7 +329,16 @@
       gap: 1rem;
     }
     .promo-inner.promo-stack .promo-flyer {
-      max-height: 90vh;
+      max-height: 70vh;
+    }
+    .promo-ticket-box {
+      background: var(--cream-light);
+      border-radius: 14px;
+      padding: 0.8rem 1.5rem;
+      text-align: center;
+      line-height: 1.3;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.4);
+      max-width: 90vw;
     }
     .promo-flyer {
       border-radius: 10px;
@@ -1548,6 +1557,11 @@
     <div class="promo-inner promo-stack">
       <button class="promo-close" onclick="closeHomePopup()" aria-label="Close">&times;</button>
       <img class="promo-flyer" src="woodland-story-flyer.jpg" alt="Chronic Presents — A Woodland Story showcase, Nov 29, 7–9pm, Faceclock Gallery 1935 N. 2nd St." />
+      <div class="promo-ticket-box">
+        <a class="food-drive-link" href="https://cash.app/$CHRONICMovement" target="_blank" rel="noopener" onclick="closeHomePopup()">Click here to grab your ticket!</a>
+        <div class="slot-cashtag">CashApp - $CHRONICMovement</div>
+        <div class="slot-ticket">Tickets $25</div>
+      </div>
     </div>
   </div>
 
